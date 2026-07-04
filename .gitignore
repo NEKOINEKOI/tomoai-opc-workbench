@@ -1,0 +1,39 @@
+# ==================== 敏感配置文件（绝对不能提交） ====================
+data/local-ai-providers.json
+data/wechat-settings.json
+data/workspace.json
+.env.local
+.env
+
+# ==================== 浏览器用户数据（含Cookie/登录态/历史记录） ====================
+data/wechat-chrome-profile/
+
+# ==================== 生成的图片资源 ====================
+image-assets/
+
+# ==================== 依赖目录 ====================
+node_modules/
+
+# ==================== 日志文件 ====================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ==================== 视频制作工程文件（体积大，含缓存） ====================
+tomoai-opc-operation-video/
+tomoai-product-video/
+
+# ==================== 系统/编辑器文件 ====================
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ==================== 构建产物 ====================
+dist/
+build/

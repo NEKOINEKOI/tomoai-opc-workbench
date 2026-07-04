@@ -1,0 +1,15 @@
+{
+  "name": "tomoai-opc-workbench",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TOMOAI AI 工具测评 OPC 本地工作台",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js",
+    "smoke": "node scripts/smoke-test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

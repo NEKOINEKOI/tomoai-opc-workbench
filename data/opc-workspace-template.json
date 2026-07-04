@@ -1,0 +1,94 @@
+{
+  "workspace": {
+    "brand": "TOMOAI",
+    "purpose": "AI 工具测评公众号内容生产",
+    "stage": "framework"
+  },
+  "account_profile": {
+    "positioning": "",
+    "target_readers": [],
+    "preferred_tool_categories": [],
+    "avoid_topics": [],
+    "tone_rules": [],
+    "forbidden_expressions": []
+  },
+  "tools": [
+    {
+      "id": "",
+      "name": "",
+      "category": "",
+      "official_url": "",
+      "pricing": "",
+      "core_features": [],
+      "suitable_scenarios": [],
+      "known_limits": [],
+      "source_links": []
+    }
+  ],
+  "topics": [
+    {
+      "id": "",
+      "title": "",
+      "tool_id": "",
+      "type": "单工具实测",
+      "reader_pain": "",
+      "why_now": "",
+      "commercial_value": "",
+      "test_tasks": [],
+      "risk_notes": [],
+      "source_links": [],
+      "status": "candidate"
+    }
+  ],
+  "sponsor_briefs": [
+    {
+      "id": "",
+      "brand": "",
+      "tool_id": "",
+      "campaign_goal": "",
+      "must_include": [],
+      "must_avoid": [],
+      "deliverables": [],
+      "fee": "",
+      "payment_status": "",
+      "draft_due": "",
+      "publish_due": "",
+      "status": ""
+    }
+  ],
+  "article_packages": [
+    {
+      "id": "",
+      "topic_id": "",
+      "angle": "",
+      "target_reader": "",
+      "outline": [],
+      "test_tasks": [],
+      "screenshot_list": [],
+      "success_cases": [],
+      "failure_cases": [],
+      "core_judgement": "",
+      "title_options": [],
+      "publish_checks": []
+    }
+  ],
+  "review_rules": {
+    "ai_smell_checks": [],
+    "wechat_compliance_checks": [],
+    "sponsored_content_checks": [],
+    "evidence_requirements": []
+  },
+  "analytics": [
+    {
+      "article_id": "",
+      "publish_date": "",
+      "views": null,
+      "likes": null,
+      "favorites": null,
+      "shares": null,
+      "comments": null,
+      "sponsor_leads": null,
+      "review": ""
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "workspace": {
+    "brand": "TOMOAI",
+    "purpose": "AI 工具测评公众号内容生产",
+    "stage": "local-v1"
+  },
+  "profileFormDraft": {},
+  "accountProfiles": [],
+  "topicSignals": [],
+  "topicCards": [],
+  "articlePackages": [],
+  "articles": [],
+  "contentCalendar": [],
+  "dailyDigests": [],
+  "articleChecks": [],
+  "legacyTopics": [],
+  "reviewRules": {
+    "aiSmellChecks": [],
+    "wechatComplianceChecks": [],
+    "sponsoredContentChecks": [],
+    "evidenceRequirements": []
+  },
+  "analytics": [],
+  "analyticsRecaps": []
+}

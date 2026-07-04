@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>智井秒排 - 公众号 Markdown 工作台</title>
+  <link rel="icon" href="./tomoai-icon.ico" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand-compact">
+        <div class="brand-name">TOMOAI / 智井秒排</div>
+        <div class="brand-subtitle">轻松排版，一键推送到草稿箱</div>
+      </div>
+      <span id="statusText" class="sr-status" aria-live="polite">准备就绪</span>
+      <div class="topbar-groups">
+        <section class="tool-group" aria-label="资料入口">
+          <span class="tool-group-title">资料入口</span>
+          <div class="tool-group-actions">
+            <button id="openImaBtn" type="button">IMA ↗</button>
+            <a href="https://github.com/NEKOINEKOI" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a href="https://x.com/home" target="_blank" rel="noopener noreferrer">X ↗</a>
+            <a href="https://aihot.virxact.com/" target="_blank" rel="noopener noreferrer">AIHOT ↗</a>
+            <button id="openTopicLibraryBtn" class="btn btn-secondary topic-library-btn" type="button">选题库</button>
+          </div>
+        </section>
+        <section class="tool-group" aria-label="AI 辅助">
+          <span class="tool-group-title">AI 辅助</span>
+          <div class="tool-group-actions">
+            <button id="openAiProviderBtn" type="button">API 设置</button>
+            <a href="https://chatgpt.com/g/g-p-684d970f4ac4819183ad8440448f1321-gong-zhong-hao-wen-zhang/project" target="_blank" rel="noopener noreferrer">ChatGPT ↗</a>
+            <a href="https://gemini.google.com/gem/be3a7a88c11e" target="_blank" rel="noopener noreferrer">Gemini ↗</a>
+          </div>
+        </section>
+        <section class="tool-group publish-group" aria-label="发布动作">
+          <span class="tool-group-title">发布动作</span>
+          <div class="tool-group-actions">
+            <button id="exportObsidianBtn" class="btn btn-secondary">保存到 Obsidian</button>
+            <button id="publishCheckBtn" class="btn btn-secondary" type="button">发布检查</button>
+            <button id="copyBtn" class="btn btn-secondary">复制整篇</button>
+            <button id="pushDraftBtn" class="btn btn-primary">推送草稿</button>
+            <a href="https://mp.weixin.qq.com/cgi-bin/appmsg?begin=0&count=10&type=77&action=list_card&token=1101627503&lang=zh_CN" target="_blank" rel="noopener noreferrer">微信草稿 ↗</a>
+          </div>
+        </section>
+      </div>
+    </header>
+
+    <section class="workspace">
+      <aside class="panel article-panel">
+        <div class="panel-heading">
+          <div>
+            <div class="panel-title">LIBRARY</div>
+            <h2>文章库</h2>
+          </div>
+        </div>
+        <input id="articleSearchInput" class="article-search" type="search" placeholder="搜索文章" />
+        <button id="newArticleBtn" class="btn btn-primary article-new-btn">+ 新建文章</button>
+        <div id="articleActions" class="article-actions">
+          <button id="renameArticleBtn" class="btn btn-secondary article-action-btn">改标题</button>
+          <button id="deleteArticleBtn" class="btn btn-secondary article-action-btn danger">删除</button>
+        </div>
+        <div id="articleList" class="article-list"></div>
+      </aside>
+
+      <section class="panel editor-panel">
+        <section class="article-info-card">
+          <div class="card-heading">
+            <div>
+              <div class="panel-title">COVER</div>
+              <h2>封面头图</h2>
+            </div>
+            <button id="copyCoverTitleSubtitleBtn" class="btn btn-secondary icon-action-btn" type="button" title="复制并打开 ChatGPT" aria-label="复制并打开 ChatGPT">↗</button>
+          </div>
+          <div class="cover-info-grid">
+            <label>
+              <span>封面主标题</span>
+              <input id="coverTitleInput" class="field-input" placeholder="封面主标题" />
+            </label>
+            <label>
+              <span>封面副标题</span>
+              <input id="coverSubtitleInput" class="field-input" placeholder="封面副标题" />
+            </label>
+          </div>
+        </section>
+
+        <section class="editor-card">
+          <div class="editor-card-toolbar">
+            <div>
+              <div class="panel-title">WRITE</div>
+              <h2>Markdown 输入</h2>
+            </div>
+            <div class="editor-tools">
+              <button id="autoMarkdownBtn" class="tool-btn" type="button">整理 Markdown</button>
+              <button id="openTableBuilderBtn" class="tool-btn" type="button">插入表格</button>
+              <button id="clearFormattingBtn" class="tool-btn" type="button">清空格式</button>
+            </div>
+          </div>
+          <textarea id="markdownInput" spellcheck="false"></textarea>
+        </section>
+        <input id="imagePicker" type="file" accept="image/*" hidden />
+        <input id="coverPicker" type="file" accept="image/*" hidden />
+      </section>
+
+      <section class="panel preview-panel">
+        <div class="preview-header">
+          <div>
+            <div class="panel-title">PREVIEW</div>
+            <h2>实时预览</h2>
+          </div>
+          <div class="preview-meta">
+            <span>公众号样式 · 自动渲染</span>
+            <strong id="wordCountText">0 字</strong>
+          </div>
+        </div>
+        <div class="preview-scroll">
+          <div id="previewArea" class="preview-area"></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div id="whitelistModal" class="modal-overlay hidden">
+    <div class="mini-modal-card whitelist-card">
+      <div class="mini-modal-title">需要更新公众号 IP 白名单</div>
+      <p class="whitelist-copy">微信接口返回了白名单限制。复制下面的新 IP 后，会自动打开原来的白名单设置页。</p>
+      <div id="whitelistIpText" class="whitelist-ip"></div>
+      <div class="mini-modal-actions">
+        <button id="copyWhitelistIpBtn" class="btn btn-primary">复制 IP 并打开设置页</button>
+        <button id="closeWhitelistModalBtn" class="btn btn-secondary">取消</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="publishCheckModal" class="modal-overlay hidden">
+    <div class="mini-modal-card publish-check-card">
+      <div class="mini-modal-title">发布检查</div>
+      <p id="publishCheckSummary" class="mini-modal-subtitle">检查标题、AI 味、违禁风险和证据完整度。</p>
+      <div id="publishCheckResult" class="publish-check-result"></div>
+      <div class="mini-modal-actions">
+        <button id="closePublishCheckBtn" class="btn btn-primary" type="button">知道了</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="aiProviderModal" class="modal-overlay hidden">
+    <form id="aiProviderForm" class="mini-modal-card ai-provider-card">
+      <div class="mini-modal-title">API 设置</div>
+      <p id="aiProviderSummary" class="mini-modal-subtitle">配置 Agnes 或其他 OpenAI-compatible 中转站后，“整理 Markdown”会优先调用模型。</p>
+      <label class="provider-field">
+        <span>名称</span>
+        <input name="name" class="field-input" placeholder="Agnes AI" />
+      </label>
+      <label class="provider-field">
+        <span>Base URL</span>
+        <input name="baseURL" class="field-input" placeholder="https://apihub.agnes-ai.com/v1" />
+      </label>
+      <label class="provider-field">
+        <span>API Key</span>
+        <input name="apiKey" class="field-input" type="password" placeholder="sk-..." autocomplete="off" />
+      </label>
+      <label class="provider-field">
+        <span>模型</span>
+        <input name="model" class="field-input" placeholder="agnes-1.5-flash" />
+      </label>
+      <div id="aiProviderInfo" class="provider-info">正在读取配置...</div>
+      <div class="mini-modal-actions">
+        <button id="saveAiProviderBtn" class="btn btn-primary" type="submit">保存配置</button>
+        <button id="testAiProviderBtn" class="btn btn-secondary" type="button">测试连接</button>
+        <button id="closeAiProviderBtn" class="btn btn-secondary" type="button">关闭</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="selectionToolbar" class="selection-toolbar hidden">
+    <button type="button" class="sel-btn" data-action="strike" title="删除线">S</button>
+    <button type="button" class="sel-btn" data-action="bold" title="加粗">B</button>
+    <button type="button" class="sel-btn" data-action="italic" title="斜体">I</button>
+    <button type="button" class="sel-btn" data-action="underline" title="下划线">U</button>
+    <button type="button" class="sel-btn" data-action="inline-code" title="行内代码">&lt;/&gt;</button>
+    <button type="button" class="sel-btn" data-action="link" title="链接">↗</button>
+    <button type="button" class="sel-btn" data-action="code-block" title="代码块">{ }</button>
+    <button type="button" class="sel-btn" data-action="quote" title="引用">❝</button>
+    <button type="button" class="sel-btn" data-action="unordered-list" title="无序列表">•</button>
+    <button type="button" class="sel-btn" data-action="ordered-list" title="有序列表">1.</button>
+    <button type="button" class="sel-btn" data-action="corner-quote" title="改为「」">「」</button>
+    <button type="button" class="sel-btn" data-action="clear-markdown" title="清除 Markdown 格式">Tx</button>
+    <button type="button" class="sel-btn" data-action="remove-you" title="删除“你”">去你</button>
+  </div>
+
+  <div id="imageResizeModal" class="modal-overlay hidden">
+    <div class="mini-modal-card image-modal-card">
+      <div id="imageModalTitle" class="mini-modal-title">图片操作</div>
+      <p id="imageModalSubtitle" class="mini-modal-subtitle">选择图片尺寸，或剪切/删除当前图片。</p>
+      <div class="image-action-groups">
+        <section id="imageSizeGroup" class="image-action-group">
+          <div class="image-action-label">图片宽度</div>
+          <div class="image-action-row">
+            <button id="imgSize30" class="btn btn-secondary">30%</button>
+            <button id="imgSize50" class="btn btn-secondary">50%</button>
+            <button id="imgSize70" class="btn btn-secondary">70%</button>
+            <button id="imgSize100" class="btn btn-secondary">100%</button>
+          </div>
+        </section>
+        <section id="imageRowGroup" class="image-action-group">
+          <div class="image-action-label">排版处理</div>
+          <div class="image-action-row">
+            <button id="imgRow" class="btn btn-secondary">多图成行</button>
+            <button id="imgCut" class="btn btn-secondary">剪切图片</button>
+          </div>
+        </section>
+        <section class="image-action-group image-danger-group">
+          <div class="image-action-label">其他</div>
+          <div class="image-action-row">
+            <button id="imgDelete" class="btn btn-secondary danger">删除图片</button>
+            <button id="imgSizeCancel" class="btn btn-secondary">取消</button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div id="topicModal" class="modal-overlay hidden">
+    <div class="topic-modal-card">
+      <div class="topic-modal-header">
+        <div>
+          <div class="panel-title">TOPICS</div>
+          <strong>选题库</strong>
+        </div>
+        <button id="closeTopicModalBtn" class="topic-close-btn" type="button" aria-label="关闭">×</button>
+      </div>
+      <div class="topic-add-form">
+        <input id="topicTitleInput" class="field-input" type="text" placeholder="输入选题标题" />
+        <input id="topicRecommendationInput" class="field-input" type="text" placeholder="一句话推荐 / 为什么值得写" />
+        <button id="addTopicBtn" class="btn btn-primary" type="button">加入选题</button>
+      </div>
+      <div class="topic-modal-columns">
+        <section class="topic-modal-section">
+          <div class="topic-section-toolbar">
+            <div class="topic-section-title">未写选题</div>
+            <div class="topic-bulk-actions">
+              <label class="topic-bulk-select">
+                <input id="selectAllTodoTopics" type="checkbox" />
+                全选
+              </label>
+              <button id="deleteSelectedTopicsBtn" class="topic-bulk-delete-btn" type="button" disabled>删除选中</button>
+            </div>
+          </div>
+          <div id="topicTodoList" class="topic-modal-list"></div>
+        </section>
+        <section class="topic-modal-section topic-modal-section-done">
+          <div class="topic-section-title">确定要写</div>
+          <div id="topicDoneList" class="topic-modal-list"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div id="tableBuilderModal" class="modal-overlay hidden">
+    <div class="table-modal-card">
+      <div class="table-modal-header">
+        <strong>插入 Markdown 表格</strong>
+        <div class="table-size-controls">
+          <label>列 <input id="tableColCount" type="number" min="1" max="8" value="3" /></label>
+          <label>行 <input id="tableRowCount" type="number" min="1" max="12" value="3" /></label>
+          <button id="tableRefreshBtn" class="btn btn-secondary" type="button">刷新</button>
+        </div>
+      </div>
+      <div id="tableBuilderGrid" class="table-builder-grid"></div>
+      <div class="modal-actions">
+        <button id="tableCancelBtn" class="btn btn-secondary" type="button">取消</button>
+        <button id="tableInsertBtn" class="btn btn-primary" type="button">插入表格</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="pushProgress" class="push-progress hidden" aria-live="polite">
+    <div class="push-progress-track">
+      <div id="pushProgressBar" class="push-progress-bar"></div>
+    </div>
+    <div id="pushProgressText" class="push-progress-text">准备推送</div>
+  </div>
+
+  <script src="./app.js"></script>
+  <script src="./publish-check.js"></script>
+</body>
+</html>

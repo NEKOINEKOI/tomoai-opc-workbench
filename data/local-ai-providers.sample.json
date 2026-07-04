@@ -1,0 +1,8 @@
+{
+  "id": "default",
+  "name": "my-provider",
+  "baseURL": "https://api.example.com/v1",
+  "apiKey": "sk-...",
+  "model": "your-model-name",
+  "enabled": false
+}
