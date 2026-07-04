@@ -2,6 +2,12 @@
 
 > 一个面向 AI 工具测评自媒体的本地内容生产工作台，覆盖「账号定位 -> 选题策划 -> 稿前准备 -> 文章写作 -> 封面生成 -> 数据复盘」全链路。不是 AI 代写工具，而是一套让创作者主导、AI 辅助的内容生产方法论 + 执行系统。
 
+## 🎬 产品演示
+
+<video src="https://github.com/NEKOINEKOI/tomoai-opc-workbench/raw/main/assets/demo.mp4" controls="controls" width="100%" style="max-width: 800px;">
+  你的浏览器不支持 video 标签。你可以直接 <a href="assets/demo.mp4">下载演示视频</a> 观看。
+</video>
+
 ## ✨ 项目简介
 
 OPC（One-Person Content Creator）Workbench 是一个专为 AI 工具测评类公众号/自媒体设计的本地工作台。它不是一个简单的 AI 写作工具，而是一套**内容生产系统**：
