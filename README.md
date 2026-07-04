@@ -4,9 +4,9 @@
 
 ## 🎬 产品演示
 
-[![产品演示视频](assets/demo-cover.png)](https://github.com/NEKOINEKOI/tomoai-opc-workbench/raw/main/assets/demo.mp4)
+[![产品演示视频](assets/demo-cover.png)](https://github.com/NEKOINEKOI/tomoai-opc-workbench/blob/main/assets/demo.mp4)
 
-> 点击图片播放演示视频
+> 点击图片在 GitHub 页面内播放演示视频
 
 ## ✨ 项目简介
 
