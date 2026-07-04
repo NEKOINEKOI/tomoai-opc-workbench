@@ -4,9 +4,9 @@
 
 ## 🎬 产品演示
 
-<video src="https://github.com/NEKOINEKOI/tomoai-opc-workbench/raw/main/assets/demo.mp4" controls="controls" width="100%" style="max-width: 800px;">
-  你的浏览器不支持 video 标签。你可以直接 <a href="assets/demo.mp4">下载演示视频</a> 观看。
-</video>
+[![产品演示视频](assets/demo-cover.png)](https://github.com/NEKOINEKOI/tomoai-opc-workbench/raw/main/assets/demo.mp4)
+
+> 点击图片播放演示视频
 
 ## ✨ 项目简介
 
