@@ -11,7 +11,7 @@
 
 ## 📸 产品截图
 
-![产品界面](assets/demo-cover.png)
+![主界面](assets/screenshot-main.png)
 
 ## ✨ 项目简介
 
