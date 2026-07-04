@@ -2,6 +2,7 @@
 data/local-ai-providers.json
 data/wechat-settings.json
 data/workspace.json
+data/opc-workspace.json
 .env.local
 .env
 
@@ -19,10 +20,6 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# ==================== 视频制作工程文件（体积大，含缓存） ====================
-tomoai-opc-operation-video/
-tomoai-product-video/
 
 # ==================== 系统/编辑器文件 ====================
 .DS_Store

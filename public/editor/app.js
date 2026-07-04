@@ -91,7 +91,7 @@ const OUTRO_TEMPLATE_KEY = "wechat_outro_template_v1";
 const OUTRO_TEMPLATE_IMAGES_KEY = "wechat_outro_template_images_v1";
 const COVER_PROMPT_STATE_KEY = "wechat_cover_prompt_state_v1";
 const API_BASE = window.location.protocol === "file:" ? "http://localhost:8788" : "";
-const WECHAT_WHITELIST_URL = "https://mp.weixin.qq.com/cgi-bin/safecenterstatus?action=view&t=setting/safe-index&token=356069842&lang=zh_CN";
+const WECHAT_WHITELIST_URL = "https://mp.weixin.qq.com/";
 let docs = [];
 let topics = [];
 let selectedTodoTopicIds = new Set();
@@ -117,36 +117,33 @@ const DEFAULT_COVER_PROMPT_FIELDS = {
 const DEFAULT_OUTRO_TEMPLATE = `
 ---
 
-今天就酱八，明天继续聊AI。
+今天就聊到这里，明天继续聊AI。
 
 欢迎<strong style="color:#916dd5;">点赞、评论、转发、一键关注点亮星标</strong>，每天学点 AI 小技巧👇
 
-我建了个AI的交流群，欢迎一起来交流学习。
+<a href="https://mp.weixin.qq.com/">👉 点击进入公众号主页</a>
 
-<a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=你的biz号#wechat_redirect">👉 点击进入公众号主页名片</a>
+## 关于作者
 
-## 关于我
+这里填写你的个人介绍。
 
-这里是智井，一名普通90后主副业双修职场女性。
-
-目前专注研究AI+降本增效方案。
+专注研究 AI 工具与效率提升。
 
 ## 往期精选
 
 ### AI工具
 
-- <a href="https://mp.weixin.qq.com/s/文章链接1">变了！我把龙虾训练成了夜班员工，一觉醒来活全干完了</a>
-- <a href="https://mp.weixin.qq.com/s/文章链接2">这个知识库会自我迭代：Karpathy 公开 LLM Wiki 新玩法</a>
-- <a href="https://mp.weixin.qq.com/s/文章链接3">恐怖如斯！我用OpenClaw把客服同事蒸馏成了Skill</a>
+- 在这里添加你的往期文章链接
+- 在这里添加你的往期文章链接
 
 ### AI副业
 
-- <a href="https://mp.weixin.qq.com/s/文章链接4">AI算命春节爆火！实测用DeepSeek算2025年运势（内含教程）</a>
-- <a href="https://mp.weixin.qq.com/s/文章链接5">情绪价值副业太香！AI唤醒老照片，4天暴涨粉4k+，含保姆级教程</a>
+- 在这里添加你的往期文章链接
+- 在这里添加你的往期文章链接
 
 ### 复盘&总结
 
-- <a href="https://mp.weixin.qq.com/s/文章链接6">90后女牛马，被优化了....</a>
+- 在这里添加你的往期文章链接
 `.trim();
 
 const defaultMd = `**这是加粗的效果**
@@ -189,7 +186,7 @@ $这是行内公式$
 
 然后这是图片的效果，我希望图片的代码可以短小一点，不然我排版的话看起来会非常困难，尤其图多的时候，你想办法把图片的代码，要么不显示那么多，要么想办法减少到很短，就跟下面这个一样。
 
-![](https://files.mdnice.com/user/108877/51126459-4320-4538-a374-1d93f4e28687.jpg)`;
+![](https://placehold.co/600x400/e8e3f0/916dd5?text=示例图片)`;
 
 function escapeHtml(text) {
   return text
@@ -825,7 +822,7 @@ function unwrapMarkdownMarks(line) {
 function formatFixedArticleLine(line, state) {
   const text = unwrapMarkdownMarks(line);
   if (state.nonEmptyCount === 1) {
-    return "**你好啊，这里是智井。**";
+    return "**你好。**";
   }
   if (text === "写在最后") {
     state.hasH1 = true;
@@ -2704,7 +2701,7 @@ function initCoverPromptPanel() {
   if (copyCoverPromptBtn) {
     copyCoverPromptBtn.addEventListener("click", async () => {
       await navigator.clipboard.writeText(coverPromptTextFromFields(getCurrentCoverPromptFields()));
-      window.open("https://gemini.google.com/gem/5f0c720750a9", "_blank", "noopener,noreferrer");
+      window.open("https://gemini.google.com/", "_blank", "noopener,noreferrer");
       statusText.textContent = "已复制封面三项，并打开 Gemini";
     });
   }
@@ -2712,7 +2709,7 @@ function initCoverPromptPanel() {
   if (copyCoverTitleSubtitleBtn) {
     copyCoverTitleSubtitleBtn.addEventListener("click", async () => {
       await navigator.clipboard.writeText(coverTitleSubtitleTextFromFields(getCurrentCoverPromptFields()));
-      window.open("https://chatgpt.com/g/g-p-69f227ade9bc81919161a9482fbb9340-wei-xin-gong-zhong-hao-tou-tu/project", "_blank", "noopener,noreferrer");
+      window.open("https://chatgpt.com/", "_blank", "noopener,noreferrer");
       statusText.textContent = "已复制标题和副标题，并打开 ChatGPT 封面项目";
     });
   }
@@ -3482,7 +3479,7 @@ if (editOutroBtn) {
 }
 
 newArticleBtn.addEventListener("click", () => {
-  createDoc("**你好啊，这里是智井。**\n\n# 写在最后\n\n");
+  createDoc("**你好。**\n\n# 写在最后\n\n");
   persistCurrentDoc();
 });
 

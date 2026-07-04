@@ -7326,7 +7326,7 @@ ${missingFields}
     async function copyWechatWhitelistIpAndOpenSettings() {
       const ip = state.pendingWechatWhitelistIp || "";
       if (!ip) return;
-      const url = state.wechatSettings?.whitelistUrl || "https://mp.weixin.qq.com/cgi-bin/safecenterstatus?action=view&t=setting/safe-index&token=356069842&lang=zh_CN";
+      const url = state.wechatSettings?.whitelistUrl || "https://mp.weixin.qq.com/";
       const settingsWindow = window.open("about:blank", "_blank");
       if (settingsWindow) settingsWindow.opener = null;
       try {
